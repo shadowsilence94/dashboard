@@ -1,6 +1,7 @@
 // src/components/AppLayout.jsx
 import { useState } from 'react';
-import { Layout, theme, Card } from 'antd';
+import { Layout, theme } from 'antd';
+import { Outlet } from 'react-router-dom';
 import Sidebar from './Sidebar';
 import AppHeader from './AppHeader';
 
@@ -10,7 +11,7 @@ export default function AppLayout() {
   const [collapsed, setCollapsed] = useState(false);
 
   const {
-    token: { colorBgContainer, borderRadiusLG },
+    token: { colorBgContainer },
   } = theme.useToken();
 
   return (
@@ -26,14 +27,7 @@ export default function AppLayout() {
             background: colorBgContainer,
           }}
         >
-          <Card
-            style={{
-              borderRadius: borderRadiusLG,
-              minHeight: '200px',
-            }}
-          >
-            Content Here...
-          </Card>
+          <Outlet /> {/* ← render page content here */}
         </Content>
       </Layout>
     </Layout>

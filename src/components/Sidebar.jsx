@@ -1,37 +1,27 @@
 // src/components/Sidebar.jsx
-
-import React from 'react';
-import {
-  DashboardOutlined,
-  UserOutlined,
-} from '@ant-design/icons';
 import { Layout, Menu } from 'antd';
+import {
+  UserOutlined,
+  DashboardOutlined,
+} from '@ant-design/icons';
+import { Link } from 'react-router-dom';
 
 const { Sider } = Layout;
 
-const Sidebar = ({ collapsed }) => {
+export default function Sidebar({ collapsed, setCollapsed }) {
   return (
-    <Sider trigger={null} collapsible collapsed={collapsed}>
-      <div className="demo-logo-vertical" />
-      <Menu
-        theme="dark"
-        mode="inline"
-        defaultSelectedKeys={['1']}
-        items={[
-          {
-            key: '1',
-            icon: <DashboardOutlined />,
-            label: 'Dashboard',
-          },
-          {
-            key: '2',
-            icon: <UserOutlined />,
-            label: 'User',
-          },
-        ]}
-      />
+    <Sider collapsible collapsed={collapsed} onCollapse={setCollapsed}>
+      <div className="logo" style={{ height: 32, margin: 16, color: 'white', textAlign: 'center' }}>
+        Admin
+      </div>
+      <Menu theme="dark" mode="inline" defaultSelectedKeys={['1']}>
+        <Menu.Item key="1" icon={<DashboardOutlined />}>
+          <Link to="/dashboard">Dashboard</Link>
+        </Menu.Item>
+        <Menu.Item key="2" icon={<UserOutlined />}>
+          <Link to="/users">Users</Link>
+        </Menu.Item>
+      </Menu>
     </Sider>
   );
-};
-
-export default Sidebar;
+}
